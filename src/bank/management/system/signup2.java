@@ -3,20 +3,31 @@ package bank.management.system;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class signup2 extends JFrame{
+public class signup2 extends JFrame implements ActionListener{
 
     String formno;
-    JComboBox comboBox, comboBox2, comboBox3, comboBox4, comboBox5;
-    JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9;
+    JComboBox<String> comboBox, comboBox2, comboBox3, comboBox4, comboBox5;
+    JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13;
     int fieldWidth = 200;
     JTextField panField, adharField;
+    JRadioButton s1Button, s2Button, e1Button,e2Button;
+    ButtonGroup buttonGroup1, buttonGroup2;
+    JButton next;
+
+
+
     signup2(String firse){
         super("Applicatio Form");
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/bank.png"));
@@ -44,7 +55,7 @@ public class signup2 extends JFrame{
         add(l3);
 
         String religions[] = {"Select", "Hindu", "Muslim", "Sikh", "Isai", "Other"};
-        comboBox = new JComboBox(religions);
+        comboBox = new JComboBox<>(religions);
         comboBox.setBackground(new Color(120, 130,23));
         comboBox.setFont(new Font("Raleway", Font.BOLD, 14));
         comboBox.setBounds(350, 120, fieldWidth, 30);
@@ -69,7 +80,7 @@ public class signup2 extends JFrame{
 
 
         String income[] = {"Select", "Null", "<1,50,000", "<2,50,000", "<5,00,000", "<10,00,000", ">10,00,000"};
-        comboBox3 = new JComboBox(income);
+        comboBox3 = new JComboBox<>(income);
         comboBox3.setBackground(new Color(200,200,200));
         comboBox3.setFont(new Font("Raleway", Font.BOLD, 14));
         comboBox3.setBounds(350, 200, fieldWidth,30);
@@ -119,7 +130,60 @@ public class signup2 extends JFrame{
         adharField.setFont(new Font("Raleway", Font.BOLD, 14));
         add(adharField);
 
+        l10 = new JLabel("Senior Citizen:");
+        l10.setBounds(100, 400, 200, 30);
+        l10.setFont(new Font("Raleway", Font.BOLD, 20));
+        add(l10);
 
+        s1Button = new JRadioButton("Yes");
+        s1Button.setBackground(new Color(200,200,200));
+        s1Button.setBounds(350,400,100,30);
+        s1Button.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(s1Button);
+
+        s2Button = new JRadioButton("No");
+        s2Button.setBackground(new Color(200,200,200));
+        s2Button.setBounds(450,400,100,30);
+        s2Button.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(s2Button);
+
+        l11 = new JLabel("Existing Account:");
+        l11.setBounds(100, 440, 200, 30);
+        l11.setFont(new Font("Raleway", Font.BOLD, 20));
+        add(l11);
+
+        e1Button = new JRadioButton("Yes");
+        e1Button.setBackground(new Color(200,200,200));
+        e1Button.setBounds(350,440,100,30);
+        e1Button.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(e1Button);
+        e2Button = new JRadioButton("No");
+        e2Button.setBackground(new Color(200,200,200));
+        e2Button.setBounds(450,440,100,30);
+        e2Button.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(e2Button);
+
+        // buttonGroup2.add(e1Button);
+        // buttonGroup2.add(e2Button);
+
+        l12 = new JLabel("Form No. ");
+        l12.setBounds(620,10,150,30);
+        l12.setFont(new Font("Raleway", Font.BOLD, 25));
+        add(l12);
+
+        l13 = new JLabel(formno);
+        l13.setBounds(790, 10,100,30);
+        l13.setFont(new Font("Raleway", Font.BOLD, 25));
+        add(l13);
+
+        next = new JButton("Next");
+        next.setBounds(700,650,100,30);
+        next.setBackground(Color.BLACK);
+        next.setForeground(Color.WHITE);
+        next.setBorderPainted(false);
+        next.setOpaque(true);
+        next.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(next);
 
 
         setSize(850, 750);
@@ -129,7 +193,14 @@ public class signup2 extends JFrame{
         setVisible(true);
 
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        
+    }
     public static void main(String[] args) {
         new signup2("");
+        
     }
 }
