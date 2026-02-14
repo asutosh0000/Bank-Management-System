@@ -20,9 +20,10 @@ public class signup3 extends JFrame implements ActionListener{
     Checkbox s1,s2,s3,s4,s5,s6;
     ButtonGroup group = new ButtonGroup();
     JButton submit,cancel;
+    String formno;
 
 
-    signup3(){
+    signup3(String formno){
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/bank.png"));
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -188,6 +189,6 @@ public class signup3 extends JFrame implements ActionListener{
         
     }
     public static void main(String[] args) {
-        new signup3();
+        new signup3(" ");
     }
 }

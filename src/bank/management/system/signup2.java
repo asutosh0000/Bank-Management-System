@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -28,7 +29,7 @@ public class signup2 extends JFrame implements ActionListener{
 
 
 
-    signup2(String firse){
+    signup2(String formno){
         super("Applicatio Form");
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/bank.png"));
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
@@ -54,7 +55,7 @@ public class signup2 extends JFrame implements ActionListener{
         l3.setFont(new Font("Raleway", Font.BOLD, 20));
         add(l3);
 
-        String religions[] = {"Select", "Hindu", "Muslim", "Sikh", "Isai", "Other"};
+        String religions[] = {"Hindu", "Muslim", "Sikh", "Isai", "Other"};
         comboBox = new JComboBox<>(religions);
         comboBox.setBackground(new Color(120, 130,23));
         comboBox.setFont(new Font("Raleway", Font.BOLD, 14));
@@ -66,7 +67,7 @@ public class signup2 extends JFrame implements ActionListener{
         l4.setFont(new Font("Raleway", Font.BOLD, 20));
         add(l4);
 
-        String catagory[] = {"Select", "General", "OBC", "SC", "ST"};
+        String catagory[] = {"General", "OBC", "SC", "ST"};
         comboBox2 = new JComboBox<>(catagory);
         comboBox2.setBackground(new Color(200,200,200));
         comboBox2.setFont(new Font("Raleway", Font.BOLD, 14));
@@ -79,7 +80,7 @@ public class signup2 extends JFrame implements ActionListener{
         add(l5);
 
 
-        String income[] = {"Select", "Null", "<1,50,000", "<2,50,000", "<5,00,000", "<10,00,000", ">10,00,000"};
+        String income[] = {"Null", "<1,50,000", "<2,50,000", "<5,00,000", "<10,00,000", ">10,00,000"};
         comboBox3 = new JComboBox<>(income);
         comboBox3.setBackground(new Color(200,200,200));
         comboBox3.setFont(new Font("Raleway", Font.BOLD, 14));
@@ -91,7 +92,7 @@ public class signup2 extends JFrame implements ActionListener{
         l6.setFont(new Font("Raleway", Font.BOLD, 20));
         add(l6);
 
-        String education[] = {"Select", "Non Graduate","Graduate", "Post Graduate", "Doctorate", "Other"};
+        String education[] = {"Non Graduate","Graduate", "Post Graduate", "Doctorate", "Other"};
         comboBox4 = new JComboBox<>(education);
         comboBox4.setBackground(new Color(200,200,200));
         comboBox4.setBounds(350,240,fieldWidth,30);
@@ -103,7 +104,7 @@ public class signup2 extends JFrame implements ActionListener{
         l7.setFont(new Font("Raleway", Font.BOLD, 20));
         add(l7);
 
-        String occupation[] = {"Select", "Student", "Salaried", "Self Emplaoyer", "Bussiness", "Retired"};
+        String occupation[] = {"Student", "Salaried", "Self Emplaoyer", "Bussiness", "Retired"};
         comboBox5 = new JComboBox<>(occupation);
         comboBox5.setBounds(350, 280, fieldWidth, 30);
         comboBox5.setFont(new Font("Raleway", Font.BOLD, 14));
@@ -147,6 +148,10 @@ public class signup2 extends JFrame implements ActionListener{
         s2Button.setFont(new Font("Raleway", Font.BOLD, 14));
         add(s2Button);
 
+        buttonGroup1 = new ButtonGroup();
+        buttonGroup1.add(s1Button);
+        buttonGroup1.add(s2Button);
+
         l11 = new JLabel("Existing Account:");
         l11.setBounds(100, 440, 200, 30);
         l11.setFont(new Font("Raleway", Font.BOLD, 20));
@@ -163,8 +168,9 @@ public class signup2 extends JFrame implements ActionListener{
         e2Button.setFont(new Font("Raleway", Font.BOLD, 14));
         add(e2Button);
 
-        // buttonGroup2.add(e1Button);
-        // buttonGroup2.add(e2Button);
+        buttonGroup2 = new ButtonGroup();
+        buttonGroup2.add(e1Button);
+        buttonGroup2.add(e2Button);
 
         l12 = new JLabel("Form No. ");
         l12.setBounds(620,10,150,30);
@@ -183,6 +189,7 @@ public class signup2 extends JFrame implements ActionListener{
         next.setBorderPainted(false);
         next.setOpaque(true);
         next.setFont(new Font("Raleway", Font.BOLD, 14));
+        next.addActionListener(this); 
         add(next);
 
 
@@ -196,7 +203,40 @@ public class signup2 extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String rel =(String) comboBox.getSelectedItem();
+        String cate = (String) comboBox2.getSelectedItem();
+        String inc = (String) comboBox3.getSelectedItem();
+        String edu = (String) comboBox4.getSelectedItem();
+        String occ = (String) comboBox5.getSelectedItem();
+        String pan = panField.getText();
+        String adhar = adharField.getText();
 
+        String scitizen = "";
+        if(s1Button.isSelected()){
+            scitizen = "Yes";
+        }else{
+            scitizen = "No";
+        }
+
+        String eaccoumnt = "";
+        if(e1Button.isSelected()){
+            eaccoumnt = "Yes";
+        }else{
+            eaccoumnt = "No";
+        }
+        try{
+            if(panField.getText().equals("")||adharField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Fill all the field");
+            }else{
+                con c1 = new con();
+                String q = "insert into signuptwo values('"+formno+"', '"+rel+"', '"+cate+"', '"+inc+"', '"+edu+"', '"+occ+"', '"+pan+"', '"+adhar+"', '"+scitizen+"', '"+eaccoumnt+"')";
+                c1.statement.executeUpdate(q);
+                new signup3(formno);
+                setVisible(false);
+            }
+        }catch(Exception E){
+            E.printStackTrace();
+        }
         
     }
     public static void main(String[] args) {
