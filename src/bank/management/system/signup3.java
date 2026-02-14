@@ -4,18 +4,22 @@ import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
-public class signup3 extends JFrame{
+public class signup3 extends JFrame implements ActionListener{
     JLabel label1, label2, label3,label4,label5,label6,label7,label8, label9,label10,label11,label12,label13,label14;
     JRadioButton r1,r2,r3,r4;
     Checkbox s1,s2,s3,s4,s5,s6;
     ButtonGroup group = new ButtonGroup();
+    JButton submit,cancel;
 
 
     signup3(){
@@ -140,6 +144,35 @@ public class signup3 extends JFrame{
         s6.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s6);
 
+        label12 = new JLabel("Form No: ");
+        label12.setBounds(600,5,100,30);
+        label12.setFont(new Font("Raleway", Font.BOLD, 20));
+        add(label12);
+
+        label13 = new JLabel("3472");
+        label13.setBounds(700,5,100,30);
+        label13.setFont(new Font("Rlaeway", Font.BOLD, 20));
+        add(label13);
+
+        submit = new JButton("Submit");
+        submit.setBounds(200,600,120,30);
+        submit.setFont(new Font("Raleway", Font.BOLD, 15));
+        submit.setForeground(Color.WHITE);
+        submit.setBackground(Color.BLACK);
+        submit.setBorderPainted(false);
+        submit.setOpaque(true);
+        add(submit);
+
+        cancel = new JButton("Cancel");
+        cancel.setBounds(430,600,120,30);
+        cancel.setFont(new Font("Raleway", Font.BOLD, 15));
+        cancel.setForeground(Color.WHITE);
+        cancel.setBackground(Color.BLACK);
+        cancel.setBorderPainted(false);
+        cancel.setOpaque(true);
+        add(cancel);
+
+
 
 
 
@@ -149,6 +182,10 @@ public class signup3 extends JFrame{
         setLayout(null);
         setVisible(true);
 
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
     public static void main(String[] args) {
         new signup3();
