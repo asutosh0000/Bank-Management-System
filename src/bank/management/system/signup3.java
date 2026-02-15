@@ -1,23 +1,25 @@
 package bank.management.system;
 
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 public class signup3 extends JFrame implements ActionListener{
     JLabel label1, label2, label3,label4,label5,label6,label7,label8, label9,label10,label11,label12,label13,label14;
     JRadioButton r1,r2,r3,r4;
-    Checkbox s1,s2,s3,s4,s5,s6;
+    JCheckBox s1,s2,s3,s4,s5,s6;
     ButtonGroup group = new ButtonGroup();
     JButton submit,cancel;
     String formno;
@@ -115,32 +117,32 @@ public class signup3 extends JFrame implements ActionListener{
         label11.setFont(new Font("Raleway", Font.BOLD, 20));
         add(label11);
 
-        s1 = new Checkbox("ATM CARD");
+        s1 = new JCheckBox("ATM CARD");
         s1.setBounds(100,480,200,30);
         s1.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s1);
 
-        s2 = new Checkbox("Cheque Book");
+        s2 = new JCheckBox("Cheque Book");
         s2.setBounds(350,480,200,30);
         s2.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s2);
 
-        s3 = new Checkbox("e-statement");
+        s3 = new JCheckBox("e-statement");
         s3.setBounds(100,520,200,30);
         s3.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s3);
 
-        s4 = new Checkbox("Email Alert");
+        s4 = new JCheckBox("Email Alert");
         s4.setBounds(350,520,200,30);
         s4.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s4);
 
-        s5 = new Checkbox("Internet Banking");
+        s5 = new JCheckBox("Internet Banking");
         s5.setBounds(100,560,200,30);
         s5.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s5);
 
-        s6 = new Checkbox("Mobile banking");
+        s6 = new JCheckBox("Mobile banking");
         s6.setBounds(350,560,200,30);
         s6.setFont(new Font("Raleway", Font.BOLD, 16));
         add(s6);
@@ -156,21 +158,23 @@ public class signup3 extends JFrame implements ActionListener{
         add(label13);
 
         submit = new JButton("Submit");
-        submit.setBounds(200,600,120,30);
+        submit.setBounds(100,600,120,30);
         submit.setFont(new Font("Raleway", Font.BOLD, 15));
         submit.setForeground(Color.WHITE);
         submit.setBackground(Color.BLACK);
         submit.setBorderPainted(false);
         submit.setOpaque(true);
+        submit.addActionListener(this);
         add(submit);
 
         cancel = new JButton("Cancel");
-        cancel.setBounds(430,600,120,30);
+        cancel.setBounds(330,600,120,30);
         cancel.setFont(new Font("Raleway", Font.BOLD, 15));
         cancel.setForeground(Color.WHITE);
         cancel.setBackground(Color.BLACK);
         cancel.setBorderPainted(false);
         cancel.setOpaque(true);
+        cancel.addActionListener(this);
         add(cancel);
 
 
@@ -186,7 +190,58 @@ public class signup3 extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        String atype = "";
+        if(r1.isSelected()){
+            atype = "Saving Account";
+        }else if(r2.isSelected()){
+            atype = "Fixed Deposite";
+        }else if(r3.isSelected()){
+            atype = "Current Account";
+        }else{
+            atype = "Reccuring Deposite";
+        }
+
+        Random ran = new Random();
+        long first7 = (ran.nextLong()%90000000L) + 1409963000000000L;
+        String cardno = ""+Math.abs(first7);
+
+        long first3 = (ran.nextLong()%9000L) + 1000L;
+        String pin = ""+Math.abs(first3);
+
+        String fac = "";
+        if (s1.isSelected()) {
+            fac += "ATM CARD";
+        }else if (s2.isSelected()) {
+            fac += "Cheque Book";
+        }else if (s3.isSelected()) {
+            fac += "e-statement";
+        }else if (s3.isSelected()) {
+            fac += "Email Alert";
+        }else if (s3.isSelected()) {
+            fac += "Internet Banking";
+        }else if (s3.isSelected()) {
+            fac += "Mobile banking";
+        }
+
+        try{
+            if (e.getSource()==submit) {
+                if (atype.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Fill all the field");
+                }else{
+                    con c1 = new con();
+                    String q1 = "insert into signupthree values('"+formno+"', '"+atype+"', '"+cardno+"', '"+pin+"', '"+fac+"')";
+                    String q2 = "insert into login values('"+formno+"', '"+cardno+"', '"+pin+"')";
+                    c1.statement.executeUpdate(q1);
+                    c1.statement.executeUpdate(q2);
+                    JOptionPane.showMessageDialog(null, "Card Number: "+cardno+"\nPin: "+pin);
+                    setVisible(false);
+                }
+            }else if (e.getSource() == cancel) {
+                System.exit(0);
+            }
+        }catch(Exception E){
+            E.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         new signup3(" ");
