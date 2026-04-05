@@ -3,16 +3,20 @@ package bank.management.system;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+// import java.util.Scanner;
+import java.util.Date;
 
-import javax.imageio.ImageIO;
+// import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class deposit extends JFrame{
+public class deposit extends JFrame implements ActionListener{
 
     String pin;
     JTextField textField;
@@ -45,12 +49,21 @@ public class deposit extends JFrame{
         deposit.setBorderPainted(false);
         deposit.setOpaque(true);
         deposit.setForeground(Color.WHITE);
-        deposit.setBounds(700,365,150,35);
+        deposit.setBounds(700,365,150,30);
         deposit.setFont(new Font("Raleway", Font.BOLD, 20));
-        // deposit.addActionListener(this);
+        deposit.addActionListener(this);
         image.add(deposit);
 
         cancel = new JButton("Cancel");
+        cancel.setForeground(Color.WHITE);
+        cancel.setBackground(new Color(65,125,125));
+        cancel.setOpaque(true);
+        cancel.setBorderPainted(false);
+        cancel.setBounds(700,410,150,30);
+        cancel.setFont(new Font("Raleway", Font.BOLD, 20));
+        cancel.addActionListener(this);
+        image.add(cancel);
+
         // cancel.setBounds();
 
 
@@ -59,6 +72,31 @@ public class deposit extends JFrame{
         setLocation(0,0);
         setSize(1550,1080);
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try{
+            String amount = textField.getText();
+            Date date = new Date();
+
+            if (e.getSource()==deposit) {
+                if (textField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please Enter a valid amount");
+                }else{
+                    con c1 = new con();
+                    c1.statement.execute("insert into bank values('"+pin+"', '"+date+"', 'Deposite', '"+amount+"')");
+                    JOptionPane.showMessageDialog(null, "Rs. "+amount+"Deposited Successfully");
+                    setVisible(false);
+                }
+            }else if(e.getSource()==cancel){
+                setVisible(false);
+            }
+        }catch(Exception E){
+            E.printStackTrace();
+        }
+        
+
     }
     public static void main(String[] args) {
         new deposit("");
