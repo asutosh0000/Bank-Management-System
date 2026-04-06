@@ -3,13 +3,15 @@ package bank.management.system;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class mainClass extends JFrame{
+public class mainClass extends JFrame implements ActionListener{
     JButton b1,b2,b3,b4,b5,b6,b7;
 
     mainClass(){
@@ -69,15 +71,34 @@ public class mainClass extends JFrame{
         b5.setForeground(Color.WHITE);
         b5.setOpaque(true);
         b5.setBorderPainted(false);
-        // b5.setFont(new Font("Raleway", Font.BOLD, 15));
         image.add(b5);
 
+        b6 = new JButton("BALANCE INQ");
+        b6.setBounds(410,320,150,27);
+        b6.setBackground(new Color(65,125,128));
+        b6.setForeground(Color.WHITE);
+        b6.setOpaque(true);
+        b6.setBorderPainted(false);
+        image.add(b6);
+
+        b7 = new JButton("EXIT");
+        b7.setBounds(410,370,150,27);
+        b7.setBackground(new Color(65,125,128));
+        b7.setForeground(Color.WHITE);
+        b7.setOpaque(true);
+        b7.setBorderPainted(false);
+        image.add(b7);
         
 
         setLayout(null);
         setSize(1550,1080);
         setLocation(0,0);
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
     public static void main(String[] args) {
         new mainClass();
