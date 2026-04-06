@@ -13,9 +13,9 @@ import javax.swing.JLabel;
 
 public class mainClass extends JFrame implements ActionListener{
     JButton b1,b2,b3,b4,b5,b6,b7;
-
+    String pin;
     mainClass(String pin){
-
+        this.pin =pin;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm2.png"));
         Image i2 = i1.getImage().getScaledInstance(1550, 830, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -101,7 +101,12 @@ public class mainClass extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        if (e.getSource()==b1) {
+            new deposit(pin);
+            setVisible(false);
+        }else if(e.getSource()==b7){
+            System.exit(0);
+        }
     }
     public static void main(String[] args) {
         new mainClass("");

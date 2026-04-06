@@ -88,6 +88,8 @@ public class deposit extends JFrame implements ActionListener{
                     c1.statement.execute("insert into bank values('"+pin+"', '"+date+"', 'Deposite', '"+amount+"')");
                     JOptionPane.showMessageDialog(null, "Rs. "+amount+"Deposited Successfully");
                     setVisible(false);
+
+                    new mainClass(pin);
                 }
             }else if(e.getSource()==cancel){
                 setVisible(false);
