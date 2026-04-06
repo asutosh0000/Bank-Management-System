@@ -5,13 +5,14 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import javax.swing.*;
 
 public class login extends JFrame implements ActionListener{
     JLabel label1, label2, label3;
     JTextField textField;
-    JPasswordField passwordField;
+    JTextField passwordField;
     JButton button1, button2, button3;
 
 
@@ -118,6 +119,12 @@ public class login extends JFrame implements ActionListener{
                 con c = new con();
                 String cardno = textField.getText();
                 String pin = passwordField.getText();
+                String q = "select * from login where card_no = '"+cardno+"' and pin = '"+pin+"'";
+                ResultSet resultSet = c.statement.executeQuery(q);
+                if (resultSet.next()) {
+                    setVisible(false);
+                    new mainClass(pin);
+                }
                 
             } else if (e.getSource()==button2) {
                 textField.setText("");
