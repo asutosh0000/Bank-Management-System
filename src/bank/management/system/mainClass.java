@@ -34,8 +34,8 @@ public class mainClass extends JFrame implements ActionListener{
         b1.setBackground(new Color(65,125,128));
         b1.setOpaque(true);
         b1.setBorderPainted(false);
-        // b1.setFont(new Font("Raleway", Font.BOLD, 15));
         b1.setBounds(680,270,160,27);
+        b1.addActionListener(this);
         image.add(b1);
 
         b2 = new JButton("WITHDRAWL");
@@ -44,7 +44,7 @@ public class mainClass extends JFrame implements ActionListener{
         b2.setForeground(Color.WHITE);
         b2.setOpaque(true);
         b2.setBorderPainted(false);
-        // b2.setFont(new Font("Raleway", Font.BOLD, 15));
+        b2.addActionListener(this);
         image.add(b2);
 
         b3 = new JButton("FAST CASH");
@@ -53,7 +53,7 @@ public class mainClass extends JFrame implements ActionListener{
         b3.setForeground(Color.WHITE);
         b3.setOpaque(true);
         b3.setBorderPainted(false);
-        // b3.setFont(new Font("Raleway", Font.BOLD, 15));
+        b3.addActionListener(this);
         image.add(b3);
 
         b4 = new JButton("MINI STATEMENT");
@@ -62,7 +62,7 @@ public class mainClass extends JFrame implements ActionListener{
         b4.setForeground(Color.WHITE);
         b4.setOpaque(true);
         b4.setBorderPainted(false);
-        // b4.setFont(new Font("Raleway", Font.BOLD, 15));
+        b4.addActionListener(this);
         image.add(b4);
 
         b5 = new JButton("CHANGE PIN");
@@ -71,6 +71,7 @@ public class mainClass extends JFrame implements ActionListener{
         b5.setForeground(Color.WHITE);
         b5.setOpaque(true);
         b5.setBorderPainted(false);
+        b5.addActionListener(this);
         image.add(b5);
 
         b6 = new JButton("BALANCE INQ");
@@ -79,6 +80,7 @@ public class mainClass extends JFrame implements ActionListener{
         b6.setForeground(Color.WHITE);
         b6.setOpaque(true);
         b6.setBorderPainted(false);
+        b6.addActionListener(this);
         image.add(b6);
 
         b7 = new JButton("EXIT");
@@ -87,6 +89,7 @@ public class mainClass extends JFrame implements ActionListener{
         b7.setForeground(Color.WHITE);
         b7.setOpaque(true);
         b7.setBorderPainted(false);
+        b7.addActionListener(this);
         image.add(b7);
         
 

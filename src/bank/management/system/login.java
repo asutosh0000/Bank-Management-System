@@ -114,6 +114,10 @@ public class login extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         try {
             if (e.getSource()==button1) {
+
+                con c = new con();
+                String cardno = textField.getText();
+                String pin = passwordField.getText();
                 
             } else if (e.getSource()==button2) {
                 textField.setText("");
