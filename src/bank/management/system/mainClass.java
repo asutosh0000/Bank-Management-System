@@ -106,6 +106,9 @@ public class mainClass extends JFrame implements ActionListener{
             setVisible(false);
         }else if(e.getSource()==b7){
             System.exit(0);
+        }else if(e.getSource()==b2){
+            new withdrawl(pin);
+            setVisible(false);
         }
     }
     public static void main(String[] args) {
