@@ -104,6 +104,8 @@ public class mainClass extends JFrame implements ActionListener{
         if (e.getSource()==b1) {
             new deposit(pin);
             setVisible(false);
+        }else if(e.getSource()==b3){
+            new fastCash(pin);
         }else if(e.getSource()==b6) {
             new balanceEnquiry(pin);
             setVisible(false);
