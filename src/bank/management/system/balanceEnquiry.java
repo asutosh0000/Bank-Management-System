@@ -45,9 +45,9 @@ public class balanceEnquiry extends JFrame implements ActionListener{
 
         try {
             con c = new con();
-            ResultSet resultSet = c.statement.executeQuery("Select * from bank where pin = '"+pin+"'");
+            ResultSet resultSet = c.statement.executeQuery("select * from bank where pin = '"+pin+"'");
             while (resultSet.next()) {
-                if (resultSet.getString("type").equals("deposit")) {
+                if (resultSet.getString("type").equals("Deposite")) {
                     balance += Integer.parseInt(resultSet.getString("amount"));
                 }else{
                     balance += Integer.parseInt(resultSet.getString("amount"));
@@ -70,8 +70,11 @@ public class balanceEnquiry extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        setVisible(false);
-        new mainClass(pin);
+        if (e.getSource()==b1) {
+            setVisible(false);
+            new mainClass(pin);
+        }
+        
     }
     public static void main(String[] args) {
         new balanceEnquiry("");

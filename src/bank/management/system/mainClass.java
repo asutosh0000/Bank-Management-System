@@ -104,16 +104,17 @@ public class mainClass extends JFrame implements ActionListener{
         if (e.getSource()==b1) {
             new deposit(pin);
             setVisible(false);
+        }else if(e.getSource()==b2){
+            new withdrawl(pin);
+            setVisible(false);
         }else if(e.getSource()==b3){
             new fastCash(pin);
+            setVisible(false);
         }else if(e.getSource()==b6) {
             new balanceEnquiry(pin);
             setVisible(false);
         }else if(e.getSource()==b7){
             System.exit(0);
-        }else if(e.getSource()==b2){
-            new withdrawl(pin);
-            setVisible(false);
         }
     }
     public static void main(String[] args) {
