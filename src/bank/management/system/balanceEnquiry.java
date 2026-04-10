@@ -1,4 +1,3 @@
-package bank.management.system;
 
 import java.awt.Color;
 import java.awt.Font;
